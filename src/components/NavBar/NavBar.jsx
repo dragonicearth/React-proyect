@@ -6,7 +6,6 @@ import '../NavBar/NavBar.css'
 
 export default function NavBar() {
     const categories = [...new Set(productosData.map((producto) => producto.categoria))];
-
     return (
         <Navbar expand="lg" className="colorNav">
             <Container fluid>
