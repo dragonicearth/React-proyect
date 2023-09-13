@@ -1,72 +1,95 @@
-import { Button, Card, Row, Col, Container } from "react-bootstrap";
-import productosData from "../../data/products.json";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Card, Container, Row, Col, Button, Form } from "react-bootstrap";
+import { db } from "../../firebase/cliente";
+import { getDoc, doc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const ItemDetail = () => {
-
-
-    const [count, setCount] = useState(0);
     const { id } = useParams();
-    const prodID = parseInt(id)
+    const [product, setProduct] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const filteredID = prodID ? productosData.filter((producto) => producto.id === prodID) : productosData;
+    const productRef = doc(db, "products", id);
 
-    const add = () => {
-        if (count >= 0) {
-            setCount(count + 1);
+    const handleQuantityChange = (e) => {
+        const newQuantity = parseInt(e.target.value);
+        setQuantity(newQuantity);
+    };
+
+    const handleAddToCart = () => {
+        if (quantity > 0 && quantity <= product.stock) {
+            console.log(`agregando ${quantity} al carrito de ${product.title}`);
+            setQuantity(1);
+        } else {
+            setErrorMessage("No hay stock suficiente");
         }
     };
 
-    const rest = () => {
-        if (count >= 1) {
-            setCount(count - 1);
-        }
+    const getProduct = () => {
+        getDoc(productRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const productData = { id: snapshot.id, ...snapshot.data() };
+                    setProduct(productData);
+                } else {
+                    console.log("No existe el producto con ID:", id);
+                }
+            })
+            .catch((error) => {
+                console.error("Error obteniendo el producto:", error);
+            });
     };
 
-    const buy = () => {
-        if (count >= 1) {
-            alert(`Compraste: ${count} item/s `)
-            setCount(0);
-        }
-    };
+    useEffect(() => {
+        getProduct();
+    }, [id]);
 
     return (
         <Container fluid className="mt-4 text-center">
-            <Row className="justify-content-md-center">
-                {filteredID.map((p) => (
-                    <Col key={p.id} lg={4} className="mn-4">
+            {product ? (
+                <Row className="justify-content-md-center">
+                    <Col lg={4} className="mn-4">
                         <Card className="m-5">
-                            <Card.Body >
-                                <Card.Img variant="top" className="imgSize" src={p.imagen} />
-                                <Card.Title className="textSize">{p.descripcion}</Card.Title>
+                            <Card.Img variant="top" className="imgSize" src={product.image} />
+                            <Card.Body>
+                                <Card.Title className="textSize">{product.title}</Card.Title>
+                                <Card.Text>{product.description}</Card.Text>
+                                <Card.Text>Precio: ${product.price}</Card.Text>
+                                <Card.Text>Stock disponible: {product.stock} unidades</Card.Text>
+                                {product.stock > 0 ? (
+                                    <>
+                                        <Form.Group controleid="quantity" className="mb-3">
+                                            <Form.Label>Cantidad:</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                value={quantity}
+                                                onChange={handleQuantityChange}
+                                                max={product.stock}
+                                                min={1}
+                                            ></Form.Control>
+                                            <p className="text-danger">{errorMessage}</p>
+                                        </Form.Group>
+                                        <Button className="btn btn-warning text-decoration-none me-4" onClick={handleAddToCart}>
+                                            Agregar
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <p>No hay stock suficiente</p>
+                                )}
 
-
-                                <div className="row justify-content-md-center">
-                                    <div className="justify-content-md-center">
-                                        <Button variant="outline-warning m-3" className="d-inline-block" onClick={rest}> - </Button>
-
-                                        <Card.Text className="d-inline-block">{count}</Card.Text>
-
-                                        <Button variant="outline-warning m-3" className="d-inline-block" onClick={add}> + </Button>
-
-                                        <Button variant="outline-warning m-3" className="d-inline-block" onClick={buy}>Comprar</Button>
-
-
-                                    </div>
-                                </div>
-
-
+                                <Link to="/" className="btn btn-info text-decoration-none">
+                                    Volver
+                                </Link>
                             </Card.Body>
                         </Card>
                     </Col>
-                ))
-                }
-            </Row >
-        </Container >
-    )
-
-
-}
+                </Row>
+            ) : (
+                <p className="text-white">No hay productos disponibles</p>
+            )}
+        </Container>
+    );
+};
 
 export default ItemDetail;
