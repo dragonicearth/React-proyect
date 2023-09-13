@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase/cliente";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import "./checkout.css"
 
 
 export default function Checkout() {
@@ -11,7 +12,7 @@ export default function Checkout() {
     const [checkoutData, setCheckoutData] = useState([]);
     console.log(checkoutData);
 
-  
+
 
     useEffect(() => {
         const fethCheckout = async () => {
@@ -37,27 +38,33 @@ export default function Checkout() {
         <>
             <Container fluid className="mt-4 text-center">
                 <Row className="justify-content-md-center">
+                    
                     {checkoutData.map((product) => (
+
                         <Col key={product.id} lg={4} className="mn-4">
                             <Card className="m-3">
                                 <Card.Body>
-                                    <h2>Current cart</h2>
+                                    <h2 className='fz16'>Current cart</h2>
+                                    <div className='border'>
+                                        <Row className='mb-3 mt-4'>
+                                            <Col>
+                                                <p className='text-dark text-start fw-bold fzt m-0 mx-2'><span className='text-dark-50'>Producto: </span>{product.nameProduct}</p>
+                                                <Card.Text className='text-dark text-start fw-bold fzt mt-3 mx-2'><span className='text-dark-50'>Cantidad: </span>{product.quantity}</Card.Text>
+                                            </Col>
+                                            <Col>
+                                                <Card.Text className='text-dark text-end fzp mx-2'>${product.price}</Card.Text>
+                                            </Col>
+                                        </Row>
+                                    </div>
                                     <Row>
-                                        <Col>
-                                            <Card.Text>{product.nameProduct}</Card.Text>
-                                            <Card.Text>Cantidad: {product.quantity}</Card.Text>
-                                        </Col>
-                                        <Col>
-                                            <Card.Text>${product.price}</Card.Text>
-                                        </Col>
+                                        <h2 className='text-danger fz16 mt-3 mb-4'>Total: ${product.price}</h2>
                                     </Row>
-
                                     <Button className="btn btn-warning" onClick={handleBuyClick}>Comprar</Button>
                                     <Link to="/" className='btn btn-info ms-3'>Atras</Link>
-
                                 </Card.Body>
                             </Card>
                         </Col>
+
                     ))}
                 </Row>
             </Container>
