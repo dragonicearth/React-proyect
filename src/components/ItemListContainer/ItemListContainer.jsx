@@ -1,52 +1,30 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
-import { db } from "../../firebase/cliente";
-import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { useProducts } from "../context/ProductContext";
+import ItemList from "./ItemList";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function ItemListContainer() {
     const { categoria } = useParams();
-    const [products, setProducts] = useState([]);
-    console.log('products :>> ', products);
+    const { products, updateProducts } = useProducts();
+    const filteredProducts = categoria ? products.filter((product) => product.categoryId === categoria) : products;
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const productCollection = collection(db, "products");
-            const querySnapshot = await getDocs(productCollection);
-            const filteredProducts = [];
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                if (!categoria || data.categoryId === categoria) {
-                    filteredProducts.push({ ...data, id: doc.id });
-                }
-            });
-
-            setProducts(filteredProducts);
-        };
-
-        fetchProducts();
-    }, [categoria]);
-
+    useEffect(() => {updateProducts()}, [updateProducts]);
     return (
         <>
             <h2 className="fs-5 m-2 text-center text-light">
                 Cantidad total de productos: <mark>{products.length}</mark>
             </h2>
             <Container fluid className="mt-4">
-                <Row>
-                    {products.map((product) => (
-                        <Col key={product.id} lg={4} className="mn-4">
-                            <Card className="m-3">
-                                <Card.Body>
-                                    <Card.Title className="textSize">{product.title}</Card.Title>
-                                    <Card.Text>{product.description}</Card.Text>
-                                    <Link className="btn btn-info text-decoration-none" to={`/productos/${product.categoryId}/${product.id}`}>
-                                        Más Detalles +
-                                    </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
+                <Row className="d-flex justify-content-start text-center align-items-center">
+                    {products.length === 0 ? (
+                        <div>
+                            <Spinner animation="border" className="loadingspinner" variant="light" />
+                        </div>
+                    ) : (
+                        filteredProducts.map((product) => <ItemList key={product.id} product={product} />)
+                    )}
                 </Row>
             </Container>
         </>

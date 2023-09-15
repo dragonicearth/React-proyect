@@ -1,28 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import CartWidget from "../CartWidget/CartWidget";
-import { db } from "../../firebase/cliente";
-import { collection, getDocs } from "firebase/firestore";
+import { useProducts } from "../context/ProductContext";
 import "../NavBar/NavBar.css";
 
 export default function NavBar() {
-    const [categories, setCategories] = useState([]);
+    const { products } = useProducts();
     const [selectedCategory, setSelectedCategory] = useState(null);
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            const productCollection = collection(db, "products");
-            const querySnapshot = await getDocs(productCollection);
-            const categories = new Set();
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
-                categories.add(data.categoryId);
-            });
-            setCategories([...categories]);
-        };
-        fetchCategories();
-    }, []);
+    const categories = [...new Set(products.map((product) => product.categoryId))];
 
     return (
         <Navbar expand="lg" className="colorNav">
@@ -39,14 +24,16 @@ export default function NavBar() {
                         {categories.map((category, index) => (
                             <Link
                                 key={index}
-                                to={`/productos/${category}`}
+                                to={`/${category}`}
                                 className={`nav-link ${selectedCategory === category ? "active" : ""}`}
                                 onClick={() => setSelectedCategory(category)}
                             >
                                 {category}
                             </Link>
                         ))}
-                        <CartWidget />
+                        <Link to="/cart" variant="link" className="text-none-decoration m-0 p-0 text-light">
+                            <i className="bi bi-cart4 me-2 fs-5 text-light" />
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
