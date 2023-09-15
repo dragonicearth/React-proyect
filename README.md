@@ -1,5 +1,5 @@
 ![CoffeeSHOP](image.png)
-[![Wellcome](https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/gifs/wave.gif)]
+:wave::argentina:
 ##### _E-Commerce of sell the coffee and accessories_ the same is a cloud-enabled, mobile-ready, offline-storage compatible, bootstrap-powered react-bootstrap vite and Markdown editor.
 
 ---
