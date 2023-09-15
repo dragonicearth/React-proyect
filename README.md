@@ -7,14 +7,14 @@
 [![Up to Date](https://github.com/ikatyang/emoji-cheat-sheet/workflows/Up%20to%20Date/badge.svg)](https://app.travis-ci.com/github/max-lpz/preEntrega-3-react)
 
 # Main-Feature
-This project form part of the course end React JS (Coderhouse)
+:electron: This project form part of the course end React JS (Coderhouse)
 In the same have a inicial page with all products,
 and three filters by category and an cart icon.
 after to filter a wish product, you can select the quantity and a button for add and other button for cancel the same.
 When you add a product, are added to "LocalStorage" and When buy products are added to data bases (Firebase).
 As long as they have stock, otherwise be are notification with a notification in color red, without stock
 
-    # :electron: Components:
+    # Components:
     
     * ItemListContainer(This component can be view all products (catalogue))
         -ItemList(Each producto with your Photo, name and description)
