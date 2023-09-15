@@ -54,6 +54,6 @@ cd preEntrega-3-react
 npm i
 ```
 
-## License
+## :unlock: License
 Free - OpenSource
 
