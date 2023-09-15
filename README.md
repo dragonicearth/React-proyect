@@ -1,5 +1,6 @@
 ![CoffeeSHOP](image.png)
-:wave::argentina:
+
+:wave:Welcome!
 ##### _E-Commerce of sell the coffee and accessories_ the same is a cloud-enabled, mobile-ready, offline-storage compatible, bootstrap-powered react-bootstrap vite and Markdown editor.
 
 ---
@@ -38,7 +39,7 @@ CoffeeSHOP uses a number of open source projects to work properly:
 And of course CoffeeSHOP itself is open source with a public repository: https://github.com/max-lpz/preEntrega-3-react on GitHub
 
 ---
-## Installation
+## :bangbang: Installation
 
 CoffeeSHOP requires:
     [Node.js](https://nodejs.org/)
