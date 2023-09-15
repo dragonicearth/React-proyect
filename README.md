@@ -6,7 +6,7 @@
 ---
 [![Up to Date](https://github.com/ikatyang/emoji-cheat-sheet/workflows/Up%20to%20Date/badge.svg)](https://app.travis-ci.com/github/max-lpz/preEntrega-3-react)
 
-# Main-Feature
+# :electron: Main-Feature
 This project form part of the course end React JS (Coderhouse)
 In the same have a inicial page with all products,
 and three filters by category and an cart icon.
@@ -30,7 +30,7 @@ As long as they have stock, otherwise be are notification with a notification in
     * Checkout(Last section where the buyer view your buy finish and message of thanks)
 
 # Tech
-CoffeeSHOP uses a number of open source projects to work properly:
+:desktop_computer: CoffeeSHOP uses a number of open source projects to work properly:
 - [bootstrap] - CSS enhanced for web apps!
 - [reactJS] - awesome web-based text editor
 - [markdown-it] - Markdown parser done right. Fast and easy to extend.
@@ -39,7 +39,7 @@ CoffeeSHOP uses a number of open source projects to work properly:
 And of course CoffeeSHOP itself is open source with a public repository: https://github.com/max-lpz/preEntrega-3-react on GitHub
 
 ---
-## :bangbang: Installation
+## :gear: Installation
 
 CoffeeSHOP requires:
     [Node.js](https://nodejs.org/)
