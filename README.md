@@ -1,11 +1,9 @@
 ![CoffeeSHOP](image.png)
-
+https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/gifs/wave.gif
 ##### _E-Commerce of sell the coffee and accessories_ the same is a cloud-enabled, mobile-ready, offline-storage compatible, bootstrap-powered react-bootstrap vite and Markdown editor.
 
 ---
-
-[![Node](https://ibb.co/bB2cTcP)](https://nodesource.com/products/nsolid)
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://app.travis-ci.com/github/max-lpz/preEntrega-3-react)
+[![Up to Date](https://github.com/ikatyang/emoji-cheat-sheet/workflows/Up%20to%20Date/badge.svg)](https://app.travis-ci.com/github/max-lpz/preEntrega-3-react)
 
 # Main-Feature
 This project form part of the course end React JS (Coderhouse)
