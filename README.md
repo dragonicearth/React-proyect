@@ -1,11 +1,10 @@
-# CoffeeSHOP
+![CoffeeSHOP](image.png)
+
 ##### _E-Commerce of sell the coffee and accessories_
 "CoffeeSHOP" is a cloud-enabled, mobile-ready, offline-storage compatible, bootstrap-powered react-bootstrap vite and Markdown editor.
 ---
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://app.travis-ci.com/github/max-lpz/preEntrega-3-react)
-
-
 
 # Main-Feature
 This project form part of the course end React JS (Coderhouse)
