@@ -58,7 +58,7 @@ export default function NavBar() {
                             </Link>
                         ))}
                         <Link to="/cart" variant="link" className="text-none-decoration m-0 p-1 text-light ">
-                            <h1>Carrito</h1>
+                            <i className="bi bi-cart3 me-3 ms-3 fs-5 shake"></i>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>
