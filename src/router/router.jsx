@@ -1,25 +1,24 @@
 import NavBar from "../components/NavBar/NavBar";
 import ItemListContainer from "../components/ItemListContainer/ItemListContainer";
-import ItemListDetails from "../components/IteamDetail/ItemDetail";
-import { ProductProvider } from "../components/context/ProductContext";
-import Checkout from "../components/Checkout/Checkout";
+import ItemDetailContainer from "../components/ItemDetail/ItemDetailContainer";
+import Order from "../components/Order/Order";
 import CartWidget from "../components/CartWidget/CartWidget";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "../components/CartView/CartView";
 
 export default function Router() {
     return (
         <BrowserRouter>
-            <ProductProvider>
+            <CartProvider>
                 <NavBar />
                 <Routes>
                     <Route path="/cart" element={<CartWidget />} />
-                    <Route path="/order" element={<Checkout />} />
-                    <Route path="/:detail/:id" element={<ItemListDetails />} />
+                    <Route path="/order" element={<Order />} />
+                    <Route path="/:detail/:id" element={<ItemDetailContainer />} />
                     <Route path="/:categoria" element={<ItemListContainer />} />
-                    <Route path="/checkout" element={<Checkout />} />
                     <Route path="/" element={<ItemListContainer />} />
                 </Routes>
-            </ProductProvider>
+            </CartProvider>
         </BrowserRouter>
     );
 }

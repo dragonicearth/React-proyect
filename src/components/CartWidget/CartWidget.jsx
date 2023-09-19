@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from "react";
+// CartWidget.js
+
+import React from "react";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useCart } from "../CartView/CartView";
 
 export default function CartWidget() {
-    const [cartItems, setCartItems] = useState([]);
+    const { cart, updateCartItem, removeCartItem, clearCart } = useCart();
 
-    useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        setCartItems(storedCart);
-    }, []);
-
-    useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-        setCartItems(storedCart);
-    }, []);
-
-    const updateCart = (itemId, newQuantity) => {
-        if (newQuantity >= 0) {
-            const updatedCart = cartItems.map((item) => {
-                if (item.id === itemId) {
-                    return { ...item, quantity: newQuantity };
-                }
-                return item;
-            });
-            const filteredCart = updatedCart.filter((item) => item.quantity > 0);
-            localStorage.setItem("cart", JSON.stringify(filteredCart));
-            setCartItems(filteredCart);
+    const handleUpdateCart = (itemId, newQuantity) => {
+        if (newQuantity === 0) {
+            removeCartItem(itemId);
+        } else {
+            updateCartItem(itemId, newQuantity);
         }
     };
 
@@ -34,9 +21,9 @@ export default function CartWidget() {
             <h2 className="text-center text-white my-3">Carrito de Compras</h2>
             <Card>
                 <Row className="m-4">
-                    {cartItems.length > 0 ? (
+                    {cart.length > 0 ? (
                         <>
-                            {cartItems.map((item) => (
+                            {cart.map((item) => (
                                 <Col key={item.id} xs={12} className="pb-3">
                                     <Row>
                                         <Col xs={6}>
@@ -54,7 +41,7 @@ export default function CartWidget() {
                                             <Button
                                                 variant="success"
                                                 size="md"
-                                                onClick={() => updateCart(item.id, item.quantity + 1)}
+                                                onClick={() => handleUpdateCart(item.id, item.quantity + 1)}
                                                 disabled={item.quantity >= item.stock}
                                                 className="me-2"
                                             >
@@ -63,7 +50,7 @@ export default function CartWidget() {
                                             <Button
                                                 variant="danger"
                                                 size="md"
-                                                onClick={() => updateCart(item.id, item.quantity - 1)}
+                                                onClick={() => handleUpdateCart(item.id, item.quantity - 1)}
                                                 disabled={item.quantity <= 0}
                                                 className="me-2"
                                             >
@@ -74,11 +61,20 @@ export default function CartWidget() {
                                 </Col>
                             ))}
                             <Row className="d-flex justify-content-center text-center py-4">
-                                <Link to="/order">
-                                    <Button variant="warning" size="md">
-                                        Finalizar Compra
-                                    </Button>
-                                </Link>
+                                <Col xs={8}>
+                                    <Link to="/order">
+                                        <Button variant="warning" size="md">
+                                            Finalizar Compra
+                                        </Button>
+                                    </Link>
+                                </Col>
+                                <Col xs={12} className="text-end">
+                                    <div>
+                                        <Button variant="danger" size="md" onClick={clearCart} className="ms-3">
+                                            Vaciar Carrito
+                                        </Button>
+                                    </div>
+                                </Col>
                             </Row>
                         </>
                     ) : (
