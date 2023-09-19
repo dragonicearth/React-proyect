@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button, Form, Image } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
+import { ItemDetailContainer } from "./ItemDetailContainer"
+
+
 
 export default function ItemDetail() {
     const { id } = useParams();
@@ -47,7 +49,7 @@ export default function ItemDetail() {
         if (quantity > 0) {
             const updatedCart = [...cart];
             const existingItemIndex = updatedCart.findIndex((cartItem) => cartItem.id === product.id);
-    
+
             if (existingItemIndex !== -1) {
                 const updatedQuantity = updatedCart[existingItemIndex].quantity + quantity;
                 if (updatedQuantity <= product.stock) {
@@ -81,54 +83,10 @@ export default function ItemDetail() {
             setErrorMessage("Cantidad inválida");
         }
     };
-    
-    
+
+
 
     return (
-        <Container fluid className="mt-4 text-center">
-            {product ? (
-                <Row className="d-flex justify-content-center align-items-center">
-                    <Col lg={4} className="m-4">
-                        <Card className="m-5">
-                            <div>
-                                <Image thumbnail src={product.image} />
-                            </div>
-                            <Card.Body>
-                                <Card.Title className="textSize">{product.title}</Card.Title>
-                                <Card.Text>{product.description}</Card.Text>
-                                <Card.Text>Precio: ${product.price}</Card.Text>
-                                <Card.Text>Stock disponible: {stock} unidades</Card.Text>
-                                {stock > 0 ? (
-                                    <>
-                                        <Form.Group controlId="quantity" className="mb-3">
-                                            <Form.Label>Cantidad:</Form.Label>
-                                            <Form.Control type="number" value={quantity} onChange={handleQuantityChange} max={stock} min={1} />
-                                            <p className="text-danger">{errorMessage}</p>
-                                        </Form.Group>
-                                        <Button className="btn btn-warning text-decoration-none me-4" onClick={handleAddToCart}>
-                                            Agregar al Carrito
-                                        </Button>
-                                    </>
-                                ) : (
-                                    <p>No hay stock suficiente</p>
-                                )}
-
-                                {cartCount > 0 && (
-                                    <Link to="/cart" className="btn btn-info text-decoration-none">
-                                        Ir al Carrito
-                                    </Link>
-                                )}
-
-                                <Link to="/" className="btn btn-secondary text-decoration-none ms-3">
-                                    Volver
-                                </Link>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-            ) : (
-                <p className="text-white">No hay productos disponibles</p>
-            )}
-        </Container>
+        <ItemDetailContainer />
     );
 }
