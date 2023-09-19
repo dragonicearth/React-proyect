@@ -10,7 +10,7 @@ export default function ItemListContainer() {
     const { products, updateProducts } = useProducts();
     const filteredProducts = categoria ? products.filter((product) => product.categoryId === categoria) : products;
 
-    useEffect(() => {updateProducts()}, [updateProducts]);
+    useEffect(() => { updateProducts() }, [updateProducts]);
     return (
         <>
             <h2 className="fs-5 m-2 text-center text-light">
@@ -20,7 +20,9 @@ export default function ItemListContainer() {
                 <Row className="d-flex justify-content-start text-center align-items-center">
                     {products.length === 0 ? (
                         <div>
-                            <Spinner animation="border" className="loadingspinner" variant="light" />
+                            <div class="spinner-grow text-danger" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
                     ) : (
                         filteredProducts.map((product) => <ItemList key={product.id} product={product} />)

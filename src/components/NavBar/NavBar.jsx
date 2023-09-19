@@ -18,21 +18,21 @@ export default function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto my-auto text-uppercase">
-                        <Link to="/" className={`nav-link ${selectedCategory === null ? "active" : ""}`} onClick={() => setSelectedCategory(null)}>
+                        <Link to="/" className={`nav-link text-white ${selectedCategory === null ? "active" : ""}`} onClick={() => setSelectedCategory(null)}>
                             Todos
                         </Link>
                         {categories.map((category, index) => (
                             <Link
                                 key={index}
                                 to={`/${category}`}
-                                className={`nav-link ${selectedCategory === category ? "active" : ""}`}
+                                className={`nav-link text-white ${selectedCategory === category ? "active" : ""}`}
                                 onClick={() => setSelectedCategory(category)}
                             >
                                 {category}
                             </Link>
                         ))}
-                        <Link to="/cart" variant="link" className="text-none-decoration m-0 p-0 text-light">
-                            <i className="bi bi-cart4 me-2 fs-5 text-light" />
+                        <Link to="/cart" variant="link" className="text-none-decoration m-0 p-1 text-light ">
+                            <i className="fa-solid fa-cart-shopping fs-5 ms-3 me-3" />
                         </Link>
                     </Nav>
                 </Navbar.Collapse>
