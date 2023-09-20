@@ -33,7 +33,7 @@ export default function ItemListContainer() {
     return (
         <>
             <h2 className="fs-5 m-2 text-center text-light">
-                <Alert variant="warning">Cantidad total de productos: <Badge bg="warning" text="dark">{products.length}</Badge></Alert>
+                <Alert variant="warning font-link">Cantidad total de productos: <Badge bg="warning" text="dark" className="font-link">{products.length}</Badge></Alert>
             </h2>
             <Container fluid className="mt-4">
                 <Row className="d-flex justify-content-start text-center align-items-center">

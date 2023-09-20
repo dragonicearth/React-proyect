@@ -76,7 +76,7 @@ export default function ItemDetailContainer() {
                     </Col>
                 </Row>
             ) : (
-                <p className="text-white">No hay productos disponibles</p>
+                <p className="text-white font-link">No hay productos disponibles</p>
             )}
         </Container>
     );

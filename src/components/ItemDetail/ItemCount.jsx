@@ -29,15 +29,15 @@ export default function ItemCount({ quantity, setQuantity, errorMessage, stock }
 
     return (
         <Form.Group controlId="quantity" className="mb-3">
-            <Form.Label>Cantidad:</Form.Label>
+            <Form.Label className="font-link">Cantidad:</Form.Label>
             <div className="d-flex align-items-center justify-content-center">
                 <Button variant="danger" onClick={decrementQuantity} className="me-3">
                     -
                 </Button>
                 <div >
-                    <Form.Control value={quantity} onChange={handleQuantityChange} max={stock} min={1} disabled className="text-center" />
+                    <Form.Control value={quantity} onChange={handleQuantityChange} max={stock} min={1} disabled className="text-center font-link fw-bold" />
                 </div>
-                <Button variant="success" onClick={incrementQuantity} className="ms-3">
+                <Button variant="warning" onClick={incrementQuantity} className="ms-3">
                     +
                 </Button>
             </div>
