@@ -7,11 +7,11 @@ export default function ItemDetail({ product, stock, quantity, errorMessage, set
     return (
         <Card className="m-5">
             <div>
-                <Image thumbnail src={product.image} />
+                <Image src={product.image} className="imgSize"/>
             </div>
             <Card.Body>
                 <Card.Title className="textSize font-link fw-bold">{product.title}</Card.Title>
-                <Card.Text className="font-link ms-5 me-5"><p className="ms-5 me-5">{product.description}</p></Card.Text>
+                <Card.Text className="font-link ms-5 me-5"><span className="ms-5 me-5">{product.description}</span></Card.Text>
 
                 <Card.Text className="font-link">Precio: <span className="font-link fw-bold text-danger">${product.price}</span></Card.Text>
                 <Card.Text className="font-link">Stock disponible: <span className="font-link fw-bold text-danger">{stock} unidades</span></Card.Text>
@@ -23,7 +23,7 @@ export default function ItemDetail({ product, stock, quantity, errorMessage, set
                             stock={stock}
                             errorMessage={errorMessage}
                         />
-                        <Button className="btn btn-warning text-decoration-none text-center font-link" onClick={handleAddToCart}>
+                        <Button className="btn btn-success text-decoration-none text-center font-link" onClick={handleAddToCart}>
                             Agregar al Carrito
                         </Button>
                     </>
@@ -33,7 +33,7 @@ export default function ItemDetail({ product, stock, quantity, errorMessage, set
                 <Row>
                     {cart.length > 0 && (
                         <Col className="mt-3">
-                            <Link to="/cart" className="btn btn-info text-decoration-none font-link">
+                            <Link to="/cart" className="btn btn-warning text-decoration-none font-link">
                                 Ir al Carrito
                             </Link>
                         </Col>

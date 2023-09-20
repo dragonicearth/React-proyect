@@ -36,7 +36,7 @@ export default function ItemListContainer() {
                 <Alert variant="warning font-link">Cantidad total de productos: <Badge bg="warning" text="dark" className="font-link">{products.length}</Badge></Alert>
             </h2>
             <Container fluid className="mt-4">
-                <Row className="d-flex justify-content-start text-center align-items-center">
+                <Row className="d-flex justify-content-center text-center align-items-center">
                     {products.length === 0 ? (
                         <div>
                             <Spinner className="spinner-grow text-danger" role="status" />

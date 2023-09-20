@@ -56,6 +56,7 @@ export default function CartWidget() {
                                             </Button>
                                         </Col>
                                     </Row>
+                                    <hr />
                                 </Col>
                             ))}
                             <Row className="d-flex justify-content-center text-center py-4">
@@ -69,7 +70,7 @@ export default function CartWidget() {
                                 <Col xs={12} className="text-end">
                                     <div>
                                         <Button variant="danger" size="md" onClick={clearCart} className="ms-3 font-link">
-                                            Vaciar Carrito
+                                        <i className="bi bi-trash"></i> Vaciar Carrito
                                         </Button>
                                     </div>
                                 </Col>

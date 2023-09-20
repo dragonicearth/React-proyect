@@ -12,7 +12,7 @@ export default function Order() {
         const batch = writeBatch(db);
         cart.forEach(async (item) => {
             const productRef = doc(db, "products", item.id);
-            const newStock = item.stock - item.quantity; 
+            const newStock = item.stock - item.quantity;
             batch.update(productRef, { stock: newStock });
         });
         try {
@@ -26,67 +26,73 @@ export default function Order() {
 
     return (
         <Container fluid className="mt-4 text-center">
-            <Row className="justify-content-md-center">
-                <Card className="m-3">
-                    <Card.Body>
-                        <h2 className="fz16 pb-4">Carrito Actual</h2>
-                        {cart.length > 0 ? (
-                            cart.map((item) => (
-                                <Col key={item.id} xs={12} className="mn-4">
-                                    <div className="border">
+            <Row className="d-flex justify-content-md-center">
+                <Col xs={12} md={4}>
+                    <Card className="m-3 px-3">
+                        <Card.Body>
+                            <h2 className="fz16 pb-4 font-link">Carrito Actual</h2>
+                            {cart.length > 0 ? (
+                                cart.map((item) => (
+                                    <Col key={item.id} xs={12} className="mn-4">
+                                        <div className="border">
+                                            <Row className="mb-3 mt-4">
+                                                <Col>
+                                                    <p className="text-dark text-start fw-bold fzt m-0 mx-2">
+                                                        <span className="text-dark-50 font-link">Producto: </span>
+                                                        <span className="font-link fw-bold text-danger">{item.title}</span>
+                                                    </p>
+                                                    <Card.Text className="text-dark text-start fw-bold fzt mt-3 mx-2">
+                                                        <span className="text-dark-50 font-link">Cantidad: </span>
+                                                        <span className="font-link fw-bold text-danger">{item.quantity}</span>
+                                                    </Card.Text>
+                                                </Col>
+                                                <Col>
+                                                    <Card.Text className="text-dark text-end fzp mx-2 font-link">Costo del producto por cantidad: <span className="font-link fw-bold text-danger">${item.price * item.quantity}</span></Card.Text>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </Col>
+                                ))
+                            ) : (
+                                <Col xs={12}>
+                                    <div className="pb-4">
                                         <Row className="mb-3 mt-4">
                                             <Col>
-                                                <p className="text-dark text-start fw-bold fzt m-0 mx-2">
-                                                    <span className="text-dark-50">Producto: </span>
-                                                    {item.title}
-                                                </p>
-                                                <Card.Text className="text-dark text-start fw-bold fzt mt-3 mx-2">
-                                                    <span className="text-dark-50">Cantidad: </span>
-                                                    {item.quantity}
-                                                </Card.Text>
-                                            </Col>
-                                            <Col>
-                                                <Card.Text className="text-dark text-end fzp mx-2">${item.price * item.quantity}</Card.Text>
+                                                <h2 className="text-dark text-center fw-bold fzt m-0 mx-2 font-link">Carrito Vacío</h2>
                                             </Col>
                                         </Row>
                                     </div>
                                 </Col>
-                            ))
-                        ) : (
-                            <Col xs={12}>
-                                <div className="pb-4">
-                                    <Row className="mb-3 mt-4">
-                                        <Col>
-                                            <h2 className="text-dark text-center fw-bold fzt m-0 mx-2">Carrito Vacío</h2>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            </Col>
-                        )}
-                        {cart.length > 0 && (
-                            <Col xs={12} className="mn-4">
-                                <div className="border">
-                                    <Row className="mb-3 mt-4">
-                                        <Col>
-                                            <h2 className="text-dark text-start fw-bold fzt m-0 mx-2">Total:</h2>
-                                        </Col>
-                                        <Col>
-                                            <h2 className="text-dark text-end fzp mx-2">${calculateTotal()}</h2>
-                                        </Col>
-                                    </Row>
-                                </div>
-                                <div className="mt-3">
-                                    <Button className="btn btn-warning" onClick={handleBuyClick}>
-                                        Comprar
-                                    </Button>
-                                    <Link to="/" className="btn btn-secondary ms-3">
-                                        Atrás
-                                    </Link>
-                                </div>
-                            </Col>
-                        )}
-                    </Card.Body>
-                </Card>
+                            )}
+                            {cart.length > 0 && (
+                                <Col xs={12} className="mn-4">
+                                    <div className="border">
+                                        <Row className="mb-3 mt-4">
+                                            <Col>
+                                                <h2 className="text-dark text-start fw-bold fzt m-0 mx-2 font-link">Total:</h2>
+                                            </Col>
+                                            <Col>
+                                                <h2 className="text-dark text-end fzp mx-2 font-link">
+                                                    <span className="font-link fw-bold text-danger">${calculateTotal()}</span>
+                                                </h2>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                    <div className="mt-3">
+                                        <Button className="btn btn-warning font-link" onClick={handleBuyClick}>
+                                            Comprar
+                                        </Button>
+                                        <Link to="/" className="btn btn-secondary ms-3 font-link">
+                                            Atrás
+                                        </Link>
+                                    </div>
+                                </Col>
+                            )}
+                        </Card.Body>
+                    </Card>
+
+                </Col>
+
             </Row>
         </Container>
     );
