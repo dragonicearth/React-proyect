@@ -36,8 +36,6 @@ export default function CartWidget() {
                                     <Row>
                                         <Col xs={6}>
                                             <h4>Cantidad: {item.quantity}</h4>
-                                        </Col>
-                                        <Col xs={6} className="text-end">
                                             <Button
                                                 variant="success"
                                                 size="md"
