@@ -61,7 +61,6 @@ export default function NavBar() {
                         ))}
                         <Link to="/cart" variant="link" className="text-none-decoration m-0 p-1 text-light ">
                             <i className="bi bi-cart3 me-3 ms-3 fs-5 shake"><Badge bg="danger" className="ms-1">{cartItemCount > 0 ? <span>{cartItemCount}</span> :"vacio"}</Badge></i>
-                            
                         </Link>
                     </Nav>
                 </Navbar.Collapse>

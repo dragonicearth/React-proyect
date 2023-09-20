@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Alert, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { db } from "../../firebase/cliente";
 import { collection, getDocs } from "firebase/firestore";
@@ -33,7 +33,7 @@ export default function ItemListContainer() {
     return (
         <>
             <h2 className="fs-5 m-2 text-center text-light">
-                Cantidad total de productos: <mark>{products.length}</mark>
+                <Alert variant="warning">Cantidad total de productos: <Badge bg="warning" text="dark">{products.length}</Badge></Alert>
             </h2>
             <Container fluid className="mt-4">
                 <Row className="d-flex justify-content-start text-center align-items-center">
