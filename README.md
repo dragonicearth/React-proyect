@@ -38,6 +38,11 @@ As long as they have stock, otherwise be are notification with a notification in
 
 And of course CoffeeSHOP itself is open source with a public repository: https://github.com/max-lpz/preEntrega-3-react on GitHub
 
+
+## Screenshots and Gif
+
+![DemoWeb](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXNlOTl1cDA0NDRsNGJ6NTBjNDRsZnB6NW5kZ2c2NzlhMDJ6emVlZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/e4gY1dJxbHYAjpf0xr/giphy.gif)
+
 ---
 ## :gear: Installation
 
