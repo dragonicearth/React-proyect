@@ -30,7 +30,7 @@ export default function CartWidget() {
                                             <h4>Producto: {item.title}</h4>
                                         </Col>
                                         <Col xs={6} className="text-end">
-                                            <h4> Precio: ${item.price}</h4>
+                                            <h4> Precio por unidad: ${item.price}</h4>
                                         </Col>
                                     </Row>
                                     <Row>

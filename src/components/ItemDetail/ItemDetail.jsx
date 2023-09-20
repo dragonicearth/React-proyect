@@ -3,7 +3,7 @@ import { Card, Button, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
-export default function ItemDetail({ product, stock, quantity, errorMessage, handleQuantityChange, handleAddToCart, cart }) {
+export default function ItemDetail({ product, stock, quantity, errorMessage, setQuantity, handleAddToCart, cart }) {
     return (
         <Card className="m-5">
             <div>
@@ -18,9 +18,8 @@ export default function ItemDetail({ product, stock, quantity, errorMessage, han
                     <>
                         <ItemCount
                             quantity={quantity}
-                            onIncrement={handleQuantityChange}
-                            onDecrement={handleQuantityChange}
-                            maxStock={stock}
+                            setQuantity={setQuantity}
+                            stock={stock}
                             errorMessage={errorMessage}
                         />
                         <Button className="btn btn-warning text-decoration-none text-center" onClick={handleAddToCart}>

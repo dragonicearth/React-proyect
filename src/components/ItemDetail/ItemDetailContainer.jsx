@@ -51,11 +51,6 @@ export default function ItemDetailContainer() {
         }
     }, [id, products, cart]);
 
-    const handleQuantityChange = (e) => {
-        const newQuantity = parseInt(e.target.value);
-        setQuantity(newQuantity);
-    };
-
     const handleAddToCart = () => {
         if (quantity > 0) {
             addToCart(product, quantity);
@@ -73,8 +68,8 @@ export default function ItemDetailContainer() {
                             product={product}
                             stock={stock}
                             quantity={quantity}
+                            setQuantity={setQuantity}
                             errorMessage={errorMessage}
-                            handleQuantityChange={handleQuantityChange}
                             handleAddToCart={handleAddToCart}
                             cart={cart}
                         />
